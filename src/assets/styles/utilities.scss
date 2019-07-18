@@ -1,0 +1,86 @@
+//util padding
+$listPadding: (
+	padding-left: 'pl',
+	padding-right: 'pr',
+	padding-top: 'pt',
+	padding-bottom: 'pb'
+);
+
+@each $property, $value in $listPadding
+{
+	@for $i from 1 through 90 {
+		.#{$value}-#{$i} {
+			#{$property}: #{$i}px !important;
+		}
+	}
+	// cleaning padding
+	@for $i from 1 through 90 {
+		.#{$value}-clear {
+			#{$property}: 0;
+		}
+	}
+}
+//util margin
+$listMargin: (
+	margin-left: 'ml',
+	margin-right: 'mr',
+	margin-top: 'mt',
+	margin-bottom: 'mb'
+);
+
+@each $property, $value in $listMargin
+{
+	@for $i from 1 through 90 {
+		.#{$value}-#{$i} {
+			#{$property}: #{$i}px !important;
+		}
+	}
+	// cleaning padding
+	@for $i from 1 through 90 {
+		.#{$value}-clear {
+			#{$property}: 0;
+		}
+	}
+}
+
+
+@for $i from 8 through 40 {
+	.fs-#{$i} {
+		font-size: #{$i}px !important;
+	}
+}
+
+@for $i from 5 through 20 {
+	.br-#{$i} {
+		border-radius: #{$i}px !important;
+	}
+}
+
+$listColor: (
+	primary: '#7db92e',
+	gray: '#808080',
+	white: white,
+	orange: orange
+);
+
+@each $property, $value in $listColor{
+	.bg-#{$property} {
+		background-color: #{$value} !important;
+	}
+	.text-#{$property} {
+		color: #{$value} !important;
+	}
+}
+
+
+$fontsWeight: (
+	fw-200: 200,
+	fw-500: 500,
+	fw-bold: bold
+);
+
+@each $property, $value in $fontsWeight{
+	.#{$property} {
+		font-weight: #{$value} !important;
+	}
+}
