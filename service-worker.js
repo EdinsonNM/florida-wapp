@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/florida-wapp/precache-manifest.d04cc8f6d1c884e26a250b14185d5129.js"
+  "/florida-wapp/precache-manifest.206b93fc9877dc81aaab3dc48f2bd96c.js"
 );
 
 self.addEventListener('message', (event) => {
