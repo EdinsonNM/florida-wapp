@@ -51,3 +51,14 @@ export const loadProcessEpic = Effects((subject) => {
         })
     );
 });
+
+export const loadPartnerInfoEpic = Effects((subject) => {
+    return subject.pipe(
+        switchMap(({ payload }) => {
+            return PartnerApi.getInfo(payload).pipe(
+                map(response => store.dispatch.Main.loadPartnerInfoDone(response.response)),
+                catchError(() => of([]))
+            )
+        })
+    );
+});

@@ -1,9 +1,10 @@
 import { action } from 'easy-peasy';
 import { actionEffect } from '../store.lib';
-import {loadPartnersEpic} from './main.epic'
-import {loadLocationsEpic} from './main.epic';
-import {loadVarietyEpic} from './main.epic';
-import {loadProcessEpic} from './main.epic';
+import {loadPartnersEpic} from './main.effects'
+import {loadLocationsEpic} from './main.effects';
+import {loadVarietyEpic} from './main.effects';
+import {loadProcessEpic} from './main.effects';
+import {loadPartnerInfoEpic} from './main.effects';
 
 // actions for partners
 const loadPartners = actionEffect((state) => {
@@ -14,6 +15,7 @@ const loadPartners = actionEffect((state) => {
 const addPartner = action((state, payload) => { 
 	state.partners.push(payload)
 });
+
 const loadPartnersDone = action((state, payload) => { 
 	state.inProgress = false
 	state.partners = payload
@@ -25,7 +27,7 @@ const loadLocations = actionEffect((state) => {
 
 }, loadLocationsEpic);
 
-const loadLocationsDone = actionEffect((state, paylod) => {
+const loadLocationsDone = action((state, paylod) => {
 	state.locations = paylod
 
 });
@@ -36,7 +38,7 @@ const loadVariety = actionEffect((state) => {
 
 }, loadVarietyEpic);
 
-const loadVarietyDone = actionEffect((state, paylod) => {
+const loadVarietyDone = action((state, paylod) => {
 	state.variety = paylod
 
 });
@@ -48,10 +50,22 @@ const loadProcess = actionEffect((state) => {
 
 }, loadProcessEpic);
 
-const loadProcessDone = actionEffect((state, paylod) => {
+const loadProcessDone = action((state, paylod) => {
 	state.dataprocess = paylod
-
 });
+
+// actions for info partner
+
+const loadPartnerInfo = actionEffect((state) => {
+	state.inProgress = true
+
+}, loadPartnerInfoEpic);
+
+const loadPartnerInfoDone = action((state, payload) => {
+	state.inProgress = false
+	state.userResume.info= payload;
+});
+
 export default {
 	loadLocations,
 	loadLocationsDone,
@@ -61,6 +75,8 @@ export default {
 	loadVariety,
 	loadVarietyDone,
 	loadProcess,
-	loadProcessDone
+	loadProcessDone,
+	loadPartnerInfo,
+	loadPartnerInfoDone
 }
 //actions for filter data

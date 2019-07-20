@@ -1,6 +1,6 @@
 export default {
 	inProgress: false,
-	oepnResume: false,
+	openResume: false,
 	partners: [],
 	dataprocess: []
 }
