@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/florida-wapp/static/css/main.3fde9420.chunk.css",
+    "main.js": "/florida-wapp/static/js/main.1893b059.chunk.js",
+    "main.js.map": "/florida-wapp/static/js/main.1893b059.chunk.js.map",
+    "runtime~main.js": "/florida-wapp/static/js/runtime~main.fcd5376b.js",
+    "runtime~main.js.map": "/florida-wapp/static/js/runtime~main.fcd5376b.js.map",
+    "static/js/2.9829fb6e.chunk.js": "/florida-wapp/static/js/2.9829fb6e.chunk.js",
+    "static/js/2.9829fb6e.chunk.js.map": "/florida-wapp/static/js/2.9829fb6e.chunk.js.map",
+    "index.html": "/florida-wapp/index.html",
+    "precache-manifest.d04cc8f6d1c884e26a250b14185d5129.js": "/florida-wapp/precache-manifest.d04cc8f6d1c884e26a250b14185d5129.js",
+    "service-worker.js": "/florida-wapp/service-worker.js",
+    "static/css/main.3fde9420.chunk.css.map": "/florida-wapp/static/css/main.3fde9420.chunk.css.map"
+  }
+}
