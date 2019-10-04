@@ -1,15 +1,29 @@
-import React from 'react'
+import React from 'react';
 import Map from './components/Map';
-
-export default React.memo(function MapMain() {
-	return (
-		<div>
-			<Map
-				googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAP_KEY}&v=3.exp&libraries=geometry,drawing,places`}
-  				loadingElement={<div style={{ height: `100%` }} />}
-  				containerElement={<div style={{ height: `100vh` }} />}
-  				mapElement={<div style={{ height: `100%` }} />}
-			/>
-		</div>
-	)
-})
+import {useStoreActions} from 'easy-peasy';
+export default React.memo(function MapMain({partners = []}) {
+    const {handleToggleUserResume} = useStoreActions(actions => actions.Main);
+    const getMarkers = () => {
+        return partners
+            .filter(partner => partner.coordenada.length)
+            .map((partner, index) => {
+                let coordenada = partner.coordenada[0];
+                return {
+                    key: partner.id,
+                    position: {
+                        lat: coordenada.latitud,
+                        lng: coordenada.longitud
+                    },
+                    onClick: () => {
+                        handleToggleUserResume(partner);
+                    }
+                };
+            });
+    };
+    let markers = getMarkers();
+    return (
+        <div>
+            <Map markers={markers} />
+        </div>
+    );
+});

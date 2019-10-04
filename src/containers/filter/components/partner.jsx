@@ -1,4 +1,5 @@
-import React, {useContext} from 'react';
+import React from 'react';
+import {useStoreActions} from 'easy-peasy';
 import {
     Card,
     CardContent,
@@ -7,10 +8,10 @@ import {
     makeStyles,
     Typography,
     Divider,
-    CardActionArea
+    CardActionArea,
+    useTheme,
+    useMediaQuery
 } from '@material-ui/core';
-import {AppContext} from '../../App.container';
-import {useStoreActions} from 'easy-peasy';
 
 const useStyles = makeStyles({
     bigAvatar: {
@@ -29,11 +30,16 @@ export default React.memo(function Partner({
     item
 }) {
     const classes = useStyles();
-    const {handleToggleUserResume} = useStoreActions(actions => actions.Main);
-    const handleOpenPartner = () => {
-        handleToggleUserResume(item);
-    };
+    const {handleToggleUserResume, handleToggleUserModal} = useStoreActions(
+        actions => actions.Main
+    );
+    const theme = useTheme();
 
+    const matches = useMediaQuery(theme.breakpoints.up('sm'));
+    const handleOpenPartner = () => {
+        if (matches) handleToggleUserResume(item);
+        else handleToggleUserModal(item);
+    };
     return (
         <Card
             className="text-white br-5 mb-10"
@@ -43,7 +49,7 @@ export default React.memo(function Partner({
             <CardActionArea onClick={handleOpenPartner}>
                 <CardContent>
                     <Grid container>
-                        <Grid item>
+                        <Grid item xs={3} sm={3} md={4} lg={3}>
                             {gallery && gallery.length && (
                                 <Avatar
                                     alt="Remy Sharp"
@@ -52,11 +58,15 @@ export default React.memo(function Partner({
                                 />
                             )}
                         </Grid>
-                        <Grid item xs={12} sm>
-                            <Typography className="fs-18 fw-bold" align="left">
+                        <Grid item xs={9} sm={9} md={8} lg={9}>
+                            <Typography
+                                className="fs-18 fw-bold"
+                                align="left"
+                                noWrap
+                            >
                                 {finca}
                             </Typography>
-                            <Typography className="fs-16" align="left">
+                            <Typography className="fs-16" align="left" noWrap>
                                 {title}
                             </Typography>
                             <Divider
@@ -64,7 +74,7 @@ export default React.memo(function Partner({
                                     backgroundColor: 'rgba(255,255,255, 0.5)'
                                 }}
                             />
-                            <Typography className="fs-12" align="left">
+                            <Typography className="fs-12" align="left" noWrap>
                                 {location}
                             </Typography>
                             <Typography />

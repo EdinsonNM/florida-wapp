@@ -17,7 +17,11 @@ function Partners({partners = []}) {
     return (
         <div
             className="pl-10 pr-10"
-            style={{flexGrow: 1, height: '100%', overflow: 'auto'}}
+            style={{
+                flexGrow: 1,
+                height: '100%',
+                overflow: 'auto'
+            }}
         >
             <AutoSizer>
                 {({height, width}) => (

@@ -18,12 +18,14 @@ import {
     PolarAngleAxis,
     PolarRadiusAxis
 } from 'recharts';
+
 const useStyles = makeStyles({
     bigAvatar: {
-        margin: 10,
+        margin: 'auto',
         width: 150,
         height: 150,
-        backgroundColor: 'white'
+        backgroundColor: 'white',
+        alignSelf: 'center'
     },
     ul: {
         backgroundColor: 'inherit',
@@ -42,25 +44,33 @@ export default function CardInfo({
     altitud,
     variedades,
     procesos,
-    infoChart = []
+    infoChart = [],
+    handleClose
 }) {
     const classes = useStyles();
     return (
         <div>
             <CardContent>
                 <Grid container>
-                    <Grid item>
-                        {gallery && gallery.length && (
-                            <Avatar
-                                alt="Remy Sharp"
-                                src={gallery[0]}
-                                className={classes.bigAvatar}
-                            />
-                        )}
+                    <Grid item xs={12} sm={3} md={2} lg={2}>
+                        <div
+                            style={{
+                                textAlign: 'center'
+                            }}
+                        >
+                            {gallery && gallery.length && (
+                                <Avatar
+                                    alt="Remy Sharp"
+                                    src={gallery[0]}
+                                    className={classes.bigAvatar}
+                                    imgProps={{}}
+                                />
+                            )}
+                        </div>
                     </Grid>
 
                     <Grid item xs={12} sm container>
-                        <Grid item xs={12}>
+                        <Grid item xs>
                             <Typography className="fs-18 fw-bold">
                                 {finca} - {base} - {altitud} msnm
                             </Typography>
@@ -74,7 +84,7 @@ export default function CardInfo({
                                 {location}
                             </Typography>
                             <Grid container>
-                                <Grid item sm>
+                                <Grid item xs={12}>
                                     <Typography className="fs-12 fw-bold mt-10">
                                         Distribución
                                     </Typography>
@@ -90,7 +100,7 @@ export default function CardInfo({
                                         </div>
                                     </Typography>
                                 </Grid>
-                                <Grid item sm>
+                                <Grid item xs={12} sm>
                                     <Typography className="fs-12 fw-bold mt-10">
                                         Variedades
                                     </Typography>
@@ -115,27 +125,35 @@ export default function CardInfo({
                         item
                         style={{fontSize: 11}}
                     >
-                        {infoChart.length && (
-                            <RadarChart
-                                cx={140}
-                                cy={100}
-                                outerRadius={50}
-                                width={280}
-                                height={200}
-                                data={infoChart}
-                            >
-                                <PolarGrid />
-                                <PolarAngleAxis dataKey="name" />
-                                <PolarRadiusAxis />
-                                <Radar
-                                    name="results"
-                                    dataKey="value"
-                                    stroke="#8884d8"
-                                    fill="#8884d8"
-                                    fillOpacity={0.6}
-                                />
-                            </RadarChart>
-                        )}
+                        <div
+                            style={{
+                                width: '100%',
+                                height: 220,
+                                textAlign: 'center'
+                            }}
+                        >
+                            {infoChart.length && (
+                                <RadarChart
+                                    cx={140}
+                                    cy={100}
+                                    outerRadius={50}
+                                    width={280}
+                                    height={200}
+                                    data={infoChart}
+                                >
+                                    <PolarGrid />
+                                    <PolarAngleAxis dataKey="name" />
+                                    <PolarRadiusAxis />
+                                    <Radar
+                                        name="results"
+                                        dataKey="value"
+                                        stroke="#8884d8"
+                                        fill="#8884d8"
+                                        fillOpacity={0.6}
+                                    />
+                                </RadarChart>
+                            )}
+                        </div>
                     </Grid>
                 </Grid>
             </CardContent>
